@@ -4,21 +4,14 @@ import Textarea from 'react-textarea-autosize';
 
 import ToolbarController from './toolbar_controller';
 
-const insert = (value, selection, actionData) => {
-  const mtc = new ToolbarController();
-  const newValue = mtc.render(actionData, selection.start, selection.end, value);
-  const newSelection = { start: mtc.selectionStart, end: mtc.selectionEnd };
-
-  return { newValue, newSelection };
-};
-
 export default class extends Component {
   static propTypes = {
     initialValue: PropTypes.string,
     render: PropTypes.func.isRequired,
     actions: PropTypes.arrayOf(PropTypes.shape({
-      content: PropTypes.node.isRequired,
-      execute: PropTypes.func.isRequired,
+      type: PropTypes.string,
+      content: PropTypes.node,
+      execute: PropTypes.func,
     })),
     help: PropTypes.shape({
       content: PropTypes.node.isRequired,
@@ -91,20 +84,25 @@ export default class extends Component {
   }
 
   renderToolbar() {
-    const actions = this.props.actions.map((action, index) => (
-      <button key={`action-${index}`} className="MarkdownTextarea-action" onClick={this.handleClickAction.bind(this, action)}>
-        { action.content }
-      </button>
-    ));
+    const actions = this.props.actions.map((action, index) => {
+      if (action.type === 'delimiter') {
+        return <div key={`delimiter-${index}`} className="MarkdownTextarea-delimiter" />;
+      }
+      return (
+        <button key={`action-${index}`} className="MarkdownTextarea-action" onClick={this.handleClickAction.bind(this, action)}>
+          { action.content }
+        </button>
+      );
+    });
 
     return (
       <div className="MarkdownTextarea-toolbar">
         <button onClick={this.enableWrite}
-          className={`MarkdownTextarea-action MarkdownTextarea-action--write ${this.state.writing ? 'is-active' : ''}`}>
+          className={`MarkdownTextarea-action ${this.state.writing ? 'is-active' : ''}`}>
           Write
         </button>
         <button onClick={this.enablePreview}
-          className={`MarkdownTextarea-action MarkdownTextarea-action--preview ${this.state.writing ? '' : 'is-active'}`}>
+          className={`MarkdownTextarea-action ${this.state.writing ? '' : 'is-active'}`}>
           Preview
         </button>
 
@@ -147,7 +145,18 @@ export default class extends Component {
   }
 }
 
+const insert = (value, selection, actionData) => {
+  const mtc = new ToolbarController();
+  const newValue = mtc.render(actionData, selection.start, selection.end, value);
+  const newSelection = { start: mtc.selectionStart, end: mtc.selectionEnd };
+
+  return { newValue, newSelection };
+};
+
 const actions = [
+  {
+    type: 'delimiter',
+  },
   {
     content: 'B',
     execute(value, selection) {

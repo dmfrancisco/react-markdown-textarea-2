@@ -9,12 +9,13 @@ const renderIcon = (name, options = { class: 'MarkdownTextarea-icon' }) => (
 );
 
 const actionsWithOcticons = []
-  .concat([{ ...actions[0], content: renderIcon('bold') }])
-  .concat([{ ...actions[1], content: renderIcon('italic') }])
-  .concat([{ ...actions[2], content: renderIcon('quote') }])
-  .concat([{ ...actions[3], content: renderIcon('link') }])
-  .concat([{ ...actions[4], content: renderIcon('list-unordered') }])
-  .concat([{ ...actions[5], content: renderIcon('list-ordered') }]);
+  .concat([{ ...actions[0] }])
+  .concat([{ ...actions[1], content: renderIcon('bold') }])
+  .concat([{ ...actions[2], content: renderIcon('italic') }])
+  .concat([{ ...actions[3], content: renderIcon('quote') }])
+  .concat([{ ...actions[4], content: renderIcon('link') }])
+  .concat([{ ...actions[5], content: renderIcon('list-unordered') }])
+  .concat([{ ...actions[6], content: renderIcon('list-ordered') }]);
 
 const helpWithOcticons = {
   link: 'http://commonmark.org/help/',

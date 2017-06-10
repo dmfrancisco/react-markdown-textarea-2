@@ -84,10 +84,6 @@ $mt-help-text-decoration: none !default;
     padding: 0 rem($mt-gutter/2);
     text-transform: $mt-action-text-transform;
 
-    &--preview {
-      margin-right: rem($mt-gutter/2);
-    }
-
     &:hover,
     &:focus {
       color: $mt-action-color-hover;
@@ -108,6 +104,11 @@ $mt-help-text-decoration: none !default;
   &-help-icon {
     fill: currentColor;
     vertical-align: rem(-3);
+  }
+
+  &-delimiter {
+    display: inline-block;
+    width: rem($mt-gutter/2);
   }
 
   &-help {
