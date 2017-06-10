@@ -7,7 +7,8 @@
   "files": [
     "css",
     "es",
-    "lib"
+    "lib",
+    "umd"
   ],
   "babel": {
     "plugins": [
@@ -20,7 +21,7 @@
     ]
   },
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component && node-sass src/index.scss umd/main.css",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "start-storybook -p 9001 -c .storybook",
     "deploy": "storybook-to-ghpages",
