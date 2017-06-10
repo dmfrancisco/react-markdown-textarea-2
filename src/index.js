@@ -72,12 +72,12 @@ export default class extends Component {
   }
 
   handleClickAction(action) {
-    const { newValue, newSelection } = action.execute(this.state.value, {
+    const { newState, newSelection } = action.execute(this.state, {
       start: this.textarea.selectionStart,
       end: this.textarea.selectionEnd,
     });
 
-    this.setState({ value: newValue }, () => {
+    this.setState(newState, () => {
       this.textarea.setSelectionRange(newSelection.start, newSelection.end);
       this.textarea.focus();
     });
@@ -145,12 +145,27 @@ export default class extends Component {
   }
 }
 
-const insert = (value, selection, actionData) => {
-  const mtc = new ToolbarController();
-  const newValue = mtc.render(actionData, selection.start, selection.end, value);
-  const newSelection = { start: mtc.selectionStart, end: mtc.selectionEnd };
+const insert = (state, selection, actionData) => {
+  const newSelection = {};
+  const newState = {};
 
-  return { newValue, newSelection };
+  if (actionData.key && actionData.key === state.lastKey) {
+    // If the user clicks twice in the same button, undo the action
+    const diff = state.value.length - state.lastValue.length;
+    newSelection.start = selection.start - (diff / 2);
+    newSelection.end = selection.end - (diff / 2);
+    newState.value = state.lastValue;
+    newState.lastKey = null;
+  } else {
+    const mtc = new ToolbarController();
+    newState.lastValue = state.value;
+    newState.lastKey = actionData.key;
+    newState.value = mtc.render(actionData, selection.start, selection.end, state.value);
+    newSelection.start = mtc.selectionStart;
+    newSelection.end = mtc.selectionEnd;
+  }
+
+  return { newState, newSelection };
 };
 
 const actions = [
@@ -159,33 +174,33 @@ const actions = [
   },
   {
     content: 'B',
-    execute(value, selection) {
-      return insert(value, selection, { prefix: '**', suffix: '**' });
+    execute(state, selection) {
+      return insert(state, selection, { key: 'bold', prefix: '**', suffix: '**' });
     },
   }, {
     content: 'I',
-    execute(value, selection) {
-      return insert(value, selection, { prefix: '_', suffix: '_' });
+    execute(state, selection) {
+      return insert(state, selection, { key: 'italic', prefix: '_', suffix: '_' });
     },
   }, {
     content: 'QUOTE',
-    execute(value, selection) {
-      return insert(value, selection, { prefix: '> ' });
+    execute(state, selection) {
+      return insert(state, selection, { prefix: '> ' });
     },
   }, {
     content: 'URL',
-    execute(value, selection) {
-      return insert(value, selection, { prefix: '[', suffix: '](url)' });
+    execute(state, selection) {
+      return insert(state, selection, { key: 'url', prefix: '[', suffix: '](url)' });
     },
   }, {
     content: 'UL',
-    execute(value, selection) {
-      return insert(value, selection, { prefix: '- ', multiline: true });
+    execute(state, selection) {
+      return insert(state, selection, { prefix: '- ', multiline: true });
     },
   }, {
     content: 'OL',
-    execute(value, selection) {
-      return insert(value, selection, { prefix: '1. ', multiline: true });
+    execute(state, selection) {
+      return insert(state, selection, { prefix: '1. ', multiline: true });
     },
   },
 ];
