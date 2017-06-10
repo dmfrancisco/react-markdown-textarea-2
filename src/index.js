@@ -185,7 +185,7 @@ const actions = [
   }, {
     content: 'QUOTE',
     execute(state, selection) {
-      return insert(state, selection, { prefix: '> ' });
+      return insert(state, selection, { prefix: '> ', multiline: true });
     },
   }, {
     content: 'URL',
