@@ -24,11 +24,22 @@ export default class {
   }
 
   render(d, selectionStart, selectionEnd, text) {
-    if (d.prefix) {
-      text = this.renderPrefix(selectionStart, selectionEnd, d, text);
-    }
-    if (d.suffix) {
-      text = this.renderSuffix(selectionStart, selectionEnd, this.prefixLength, d, text);
+    const selectedText = text.substring(selectionStart, selectionEnd);
+
+    if (selectedText.match(/\n/) && d.blockPrefix && d.blockSuffix) {
+      if (d.blockPrefix) {
+        text = this.renderBlockPrefix(selectionStart, selectionEnd, d, text);
+      }
+      if (d.blockSuffix) {
+        text = this.renderBlockSuffix(selectionStart, selectionEnd, this.prefixLength, d, text);
+      }
+    } else {
+      if (d.prefix) {
+        text = this.renderPrefix(selectionStart, selectionEnd, d, text);
+      }
+      if (d.suffix) {
+        text = this.renderSuffix(selectionStart, selectionEnd, this.prefixLength, d, text);
+      }
     }
     if (d.multiline) {
       this.selectionStart = 0;
@@ -68,6 +79,22 @@ export default class {
     selectionEnd += prefixLength;
     let s = text.substring(0, selectionEnd);
     s += d.suffix;
+    s += text.substring(selectionEnd, text.length);
+    return s;
+  }
+
+  renderBlockPrefix(selectionStart, selectionEnd, d, text) {
+    this.prefixLength = d.blockPrefix.length + 1;
+    let s = text.substring(0, selectionStart);
+    s += d.blockPrefix + '\n';
+    s += text.substring(selectionStart, text.length);
+    return s;
+  }
+
+  renderBlockSuffix(selectionStart, selectionEnd, blockPrefixLength, d, text) {
+    selectionEnd += blockPrefixLength + 1;
+    let s = text.substring(0, selectionEnd);
+    s += '\n' + d.blockSuffix;
     s += text.substring(selectionEnd, text.length);
     return s;
   }

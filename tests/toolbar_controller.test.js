@@ -25,6 +25,28 @@ it('should render suffixes correctly', () => {
   expect(c.renderSuffix(0, 7, 2, data, text)).toEqual(rendered);
 });
 
+it('should render block prefixes correctly', () => {
+  const text = 'abcc';
+  const data = {
+    blockPrefix: '```',
+  };
+  const rendered = '```\nabcc';
+  const c = new MarkdownToolbar();
+
+  expect(c.renderBlockPrefix(0, 0, data, text)).toEqual(rendered);
+});
+
+it('should render block suffixes correctly', () => {
+  const text = 'abcc';
+  const data = {
+    blockSuffix: '```',
+  };
+  const rendered = 'abcc\n```';
+  const c = new MarkdownToolbar();
+
+  expect(c.renderBlockSuffix(0, 0, 3, data, text)).toEqual(rendered);
+});
+
 it('should render bold selections correctly', () => {
   let text = 'abcdef';
   const data = {
@@ -57,6 +79,42 @@ it('should render bold selections correctly', () => {
   expect(c.render(data, 0, 13, text)).toEqual(rendered);
   expect(c.selectionStart).toEqual(2);
   expect(c.selectionEnd).toEqual(15);
+});
+
+it('should render code selections correctly', () => {
+  let text = 'abcdef';
+  const data = {
+    prefix: '`',
+    suffix: '`',
+    blockPrefix: '```',
+    blockSuffix: '```',
+  };
+  let rendered = 'abcdef``';
+  let c = new MarkdownToolbar();
+  expect(c.render(data, 6, 6, text)).toEqual(rendered);
+  expect(c.selectionStart).toEqual(7);
+  expect(c.selectionEnd).toEqual(7);
+
+  text = 'abcdef';
+  rendered = '`abcdef`';
+  c = new MarkdownToolbar();
+  expect(c.render(data, 0, 6, text)).toEqual(rendered);
+  expect(c.selectionStart).toEqual(1);
+  expect(c.selectionEnd).toEqual(7);
+
+  text = 'abcdef\nabcdef\n';
+  rendered = '`abcdef`\nabcdef\n';
+  c = new MarkdownToolbar();
+  expect(c.render(data, 0, 6, text)).toEqual(rendered);
+  expect(c.selectionStart).toEqual(1);
+  expect(c.selectionEnd).toEqual(7);
+
+  text = 'abcdef\nabcdef\n';
+  rendered = '```\nabcdef\nabcdef\n\n```';
+  c = new MarkdownToolbar();
+  expect(c.render(data, 0, 13, text)).toEqual(rendered);
+  expect(c.selectionStart).toEqual(4);
+  expect(c.selectionEnd).toEqual(17);
 });
 
 it('should render ul lists correctly', () => {

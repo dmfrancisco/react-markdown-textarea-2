@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MarkdownIt from 'markdown-it';
 
-import MarkdownTextarea from '../src';
+import MarkdownTextarea, { actions, insert } from '../src';
 
 const markdown = new MarkdownIt();
 
@@ -34,5 +34,28 @@ it('supports preview', () => {
   );
   element.find('.MarkdownTextarea-write').simulate('focus');
   element.find('.MarkdownTextarea-action').at(1).simulate('click');
+  expect(element.getNodes()).toMatchSnapshot();
+});
+
+it('supports custom actions', () => {
+  const customActions = actions.concat([{
+    content: '</>',
+    execute(state, selection) {
+      return insert(state, selection, {
+        prefix: '`',
+        suffix: '`',
+        blockPrefix: '```',
+        blockSuffix: '```',
+      });
+    },
+  }]);
+
+  const element = shallow(
+    <MarkdownTextarea
+      render={value => markdown.render(value)}
+      actions={customActions}
+      toolbarAlwaysVisible
+    />
+  );
   expect(element.getNodes()).toMatchSnapshot();
 });

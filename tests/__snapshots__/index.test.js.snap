@@ -62,6 +62,90 @@ Array [
 ]
 `;
 
+exports[`supports custom actions 1`] = `
+Array [
+  <div
+    className="MarkdownTextarea "
+>
+    <div
+        className="MarkdownTextarea-toolbar"
+    >
+        <button
+            className="MarkdownTextarea-action is-active"
+            onClick={[Function]}
+        >
+            Write
+        </button>
+        <button
+            className="MarkdownTextarea-action "
+            onClick={[Function]}
+        >
+            Preview
+        </button>
+        <div
+            className="MarkdownTextarea-delimiter"
+        />
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            B
+        </button>
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            I
+        </button>
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            QUOTE
+        </button>
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            URL
+        </button>
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            UL
+        </button>
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            OL
+        </button>
+        <button
+            className="MarkdownTextarea-action"
+            onClick={[Function]}
+        >
+            &lt;/&gt;
+        </button>
+    </div>
+    <TextareaAutosize
+        className="MarkdownTextarea-write"
+        inputRef={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onHeightChange={[Function]}
+        style={
+            Object {
+                "display": "block",
+              }
+        }
+        useCacheForDOMMeasurements={false}
+        value=""
+    />
+</div>,
+]
+`;
+
 exports[`supports preview 1`] = `
 Array [
   <div
