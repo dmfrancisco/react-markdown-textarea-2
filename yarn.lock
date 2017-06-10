@@ -6139,6 +6139,12 @@ react-style-proptype@^3.0.0:
   dependencies:
     prop-types "^15.5.4"
 
+react-textarea-autosize@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-5.0.6.tgz#a3742e0a319484021b4dbfa1519df287768f2133"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-transform-catch-errors@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-transform-catch-errors/-/react-transform-catch-errors-1.0.2.tgz#1b4d4a76e97271896fc16fe3086c793ec88a9eeb"

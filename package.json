@@ -25,7 +25,8 @@
   "dependencies": {},
   "peerDependencies": {
     "octicons": "^5.0.1",
-    "react": "15.x"
+    "react": "15.x",
+    "react-textarea-autosize": "^5.0.6"
   },
   "devDependencies": {
     "@kadira/storybook-deployer": "^1.2.0",

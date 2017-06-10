@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Textarea from 'react-textarea-autosize';
 
 import ToolbarController from './toolbar_controller';
 
@@ -125,8 +126,8 @@ export default class extends Component {
       <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
         { this.state.focused && this.renderToolbar() }
 
-        <textarea {...textareaProps}
-          ref={(textarea) => { this.textarea = textarea; }}
+        <Textarea {...textareaProps}
+          inputRef={(textarea) => { this.textarea = textarea; }}
           className="MarkdownTextarea-write"
           style={{ display: this.state.writing ? 'block' : 'none' }}
           onFocus={this.handleFocus}
