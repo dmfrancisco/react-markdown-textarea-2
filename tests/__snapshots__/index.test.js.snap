@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays toolbar on focus 1`] = `
+Array [
+  <div
+    className="MarkdownTextarea is-focused"
+>
+    <div
+        className="MarkdownTextarea-toolbar"
+    >
+        <button
+            className="MarkdownTextarea-action is-active"
+            onClick={[Function]}
+        >
+            Write
+        </button>
+        <button
+            className="MarkdownTextarea-action "
+            onClick={[Function]}
+        >
+            Preview
+        </button>
+    </div>
+    <TextareaAutosize
+        className="MarkdownTextarea-write"
+        inputRef={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onHeightChange={[Function]}
+        style={
+            Object {
+                "display": "block",
+              }
+        }
+        useCacheForDOMMeasurements={false}
+        value=""
+    />
+</div>,
+]
+`;
+
+exports[`renders correctly with only required props 1`] = `
+Array [
+  <div
+    className="MarkdownTextarea "
+>
+    <TextareaAutosize
+        className="MarkdownTextarea-write"
+        inputRef={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onHeightChange={[Function]}
+        style={
+            Object {
+                "display": "block",
+              }
+        }
+        useCacheForDOMMeasurements={false}
+        value=""
+    />
+</div>,
+]
+`;
+
+exports[`supports preview 1`] = `
+Array [
+  <div
+    className="MarkdownTextarea is-focused"
+>
+    <div
+        className="MarkdownTextarea-toolbar"
+    >
+        <button
+            className="MarkdownTextarea-action "
+            onClick={[Function]}
+        >
+            Write
+        </button>
+        <button
+            className="MarkdownTextarea-action is-active"
+            onClick={[Function]}
+        >
+            Preview
+        </button>
+    </div>
+    <TextareaAutosize
+        className="MarkdownTextarea-write"
+        inputRef={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onHeightChange={[Function]}
+        style={
+            Object {
+                "display": "none",
+              }
+        }
+        useCacheForDOMMeasurements={false}
+        value="Hello _World_"
+    />
+    <div
+        className="MarkdownTextarea-preview"
+        dangerouslySetInnerHTML={
+            Object {
+                "__html": "<p>Hello <em>World</em></p>
+            ",
+              }
+        }
+        style={
+            Object {
+                "minHeight": null,
+              }
+        }
+    />
+</div>,
+]
+`;
