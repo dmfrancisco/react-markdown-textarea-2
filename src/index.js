@@ -24,12 +24,14 @@ export default class extends Component {
       content: PropTypes.node.isRequired,
       link: PropTypes.string.isRequired,
     }),
+    toolbarAlwaysVisible: PropTypes.bool,
   }
 
   static defaultProps = {
     initialValue: '',
     actions: [],
     help: null,
+    toolbarAlwaysVisible: false,
   }
 
   constructor(props) {
@@ -43,13 +45,13 @@ export default class extends Component {
   }
 
   componentDidMount() {
-    if (document.addEventListener) {
+    if (!this.props.toolbarAlwaysVisible && document.addEventListener) {
       document.addEventListener('click', this.handleClickOutside, true);
     }
   }
 
   componentWillUnmount() {
-    if (document.removeEventListener) {
+    if (!this.props.toolbarAlwaysVisible && document.removeEventListener) {
       document.removeEventListener('click', this.handleClickOutside, true);
     }
   }
@@ -120,11 +122,11 @@ export default class extends Component {
   // that if the user resizes it, it will keep the same height after the preview is toggled
   render() {
     const minHeight = this.textarea ? this.textarea.offsetHeight : null;
-    const { initialValue, render, actions, help, ...textareaProps } = this.props;
+    const { initialValue, render, actions, help, toolbarAlwaysVisible, ...textareaProps } = this.props;
 
     return (
       <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
-        { this.state.focused && this.renderToolbar() }
+        { (this.props.toolbarAlwaysVisible || this.state.focused) && this.renderToolbar() }
 
         <Textarea {...textareaProps}
           inputRef={(textarea) => { this.textarea = textarea; }}
