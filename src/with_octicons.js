@@ -16,11 +16,21 @@ const actionsWithOcticons = []
   .concat([{ ...actions[4], content: renderIcon('list-unordered') }])
   .concat([{ ...actions[5], content: renderIcon('list-ordered') }]);
 
+const helpWithOcticons = {
+  link: 'http://commonmark.org/help/',
+  content: (
+    <span>
+      { renderIcon('markdown', { class: 'MarkdownTextarea-help-icon' }) }
+      Markdown styling is supported
+    </span>
+  ),
+};
+
 export default MarkdownTextarea;
 
 export {
   insert,
   renderIcon,
-  actions,
-  actionsWithOcticons,
+  actionsWithOcticons as actions,
+  helpWithOcticons as help,
 };

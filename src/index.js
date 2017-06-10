@@ -19,11 +19,16 @@ export default class extends Component {
       content: PropTypes.node.isRequired,
       execute: PropTypes.func.isRequired,
     })),
+    help: PropTypes.shape({
+      content: PropTypes.node.isRequired,
+      link: PropTypes.string.isRequired,
+    }),
   }
 
   static defaultProps = {
     initialValue: '',
     actions: [],
+    help: null,
   }
 
   constructor(props) {
@@ -101,6 +106,11 @@ export default class extends Component {
         </button>
 
         { actions }
+
+        { this.props.help &&
+          <a className="MarkdownTextarea-help" href={this.props.help.link} target="_blank" rel="noopener noreferrer">
+            { this.props.help.content }
+          </a> }
       </div>
     );
   }
@@ -109,7 +119,7 @@ export default class extends Component {
   // that if the user resizes it, it will keep the same height after the preview is toggled
   render() {
     const minHeight = this.textarea ? this.textarea.offsetHeight : null;
-    const { initialValue, render, actions, ...textareaProps } = this.props;
+    const { initialValue, render, actions, help, ...textareaProps } = this.props;
 
     return (
       <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
@@ -168,7 +178,13 @@ const actions = [
   },
 ];
 
+const help = {
+  content: 'Markdown styling is supported',
+  link: 'http://commonmark.org/help/',
+};
+
 export {
   insert,
   actions,
+  help,
 };

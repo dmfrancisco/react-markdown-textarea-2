@@ -20,6 +20,10 @@ $mt-action-font-weight-active: 600 !default;
 $mt-action-font-weight: 400 !default;
 $mt-action-letter-spacing: rem(0.7) !default;
 $mt-action-text-transform: uppercase !default;
+$mt-help-color: inherit !default;
+$mt-help-color-hover: $mt-action-color-hover !default;
+$mt-help-font-size: rem(13) !default;
+$mt-help-text-decoration: none !default;
 
 // This follows the SUIT CSS naming conventions: https://git.io/NreGHA
 .MarkdownTextarea {
@@ -100,9 +104,29 @@ $mt-action-text-transform: uppercase !default;
     }
   }
 
-  &-icon {
+  &-icon,
+  &-help-icon {
     fill: currentColor;
     vertical-align: rem(-3);
+  }
+
+  &-help {
+    color: $mt-help-color;
+    float: right;
+    font-size: $mt-help-font-size;
+    line-height: rem($mt-toolbar-height);
+    margin: 0 rem($mt-gutter);
+    text-decoration: $mt-help-text-decoration;
+
+    &:hover,
+    &:focus {
+      color: $mt-help-color-hover;
+      outline: none;
+    }
+
+    &-icon {
+      margin-right: rem($mt-gutter/2);
+    }
   }
 
   *,
