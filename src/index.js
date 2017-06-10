@@ -6,7 +6,7 @@ import ToolbarController from './toolbar_controller';
 
 export default class extends Component {
   static propTypes = {
-    initialValue: PropTypes.string,
+    value: PropTypes.string,
     render: PropTypes.func.isRequired,
     actions: PropTypes.arrayOf(PropTypes.shape({
       type: PropTypes.string,
@@ -21,7 +21,7 @@ export default class extends Component {
   }
 
   static defaultProps = {
-    initialValue: '',
+    value: '',
     actions: [],
     help: null,
     toolbarAlwaysVisible: false,
@@ -33,7 +33,7 @@ export default class extends Component {
     this.state = {
       writing: true,
       focused: false,
-      value: this.props.initialValue,
+      value: this.props.value,
     };
   }
 
@@ -120,7 +120,7 @@ export default class extends Component {
   // that if the user resizes it, it will keep the same height after the preview is toggled
   render() {
     const minHeight = this.textarea ? this.textarea.offsetHeight : null;
-    const { initialValue, render, actions, help, toolbarAlwaysVisible, ...textareaProps } = this.props;
+    const { render, actions, help, toolbarAlwaysVisible, ...textareaProps } = this.props;
 
     return (
       <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
