@@ -1,0 +1,113 @@
+// Utility to convert pixels, which are easier to visualize, to rems
+@function rem($px) { @return ($px / 16) * 1rem; }
+
+// To override a variable simply define it before importing this file.
+// If you don't use SCSS, `inherit` is sometimes used for easier customization
+$mt-background: #fff !default;
+$mt-gutter: 10 !default;
+$mt-border: 1px solid #000 !default;
+$mt-toolbar-background: inherit !default;
+$mt-toolbar-border-color: rgba(#000, 0.1) !default;
+$mt-toolbar-color: lighten(#000, 65%) !default;
+$mt-toolbar-height: 32 !default;
+$mt-action-background: inherit !default;
+$mt-action-border: none !default;
+$mt-action-color: inherit !default;
+$mt-action-color-active: #000 !default;
+$mt-action-color-hover: #5892fe !default;
+$mt-action-font-size: rem(12) !default;
+$mt-action-font-weight-active: 600 !default;
+$mt-action-font-weight: 400 !default;
+$mt-action-letter-spacing: rem(0.7) !default;
+$mt-action-text-transform: uppercase !default;
+
+// This follows the SUIT CSS naming conventions: https://git.io/NreGHA
+.MarkdownTextarea {
+  position: relative;
+  box-sizing: border-box;
+  background: $mt-background;
+  border: $mt-border;
+
+  &-toolbar {
+    background: $mt-toolbar-background;
+    border-bottom: inherit;
+    border-color: $mt-toolbar-border-color;
+    color: $mt-toolbar-color;
+    height: rem($mt-toolbar-height);
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    left: 0;
+  }
+
+  &-write {
+    border: none;
+    outline: none;
+    resize: vertical;
+  }
+
+  &-write,
+  &-preview {
+    background: $mt-background;
+    min-height: rem(100);
+    padding: rem($mt-gutter);
+    width: 100%;
+  }
+
+  // Adding the padding to the bottom keeps the same height on focus
+  &-write {
+    padding-bottom: rem($mt-toolbar-height + $mt-gutter);
+    padding-top: rem($mt-gutter);
+  }
+
+  &-preview,
+  &.is-focused &-write {
+    padding-bottom: rem($mt-gutter);
+    padding-top: rem($mt-toolbar-height + $mt-gutter);
+  }
+
+  &-action {
+    background: $mt-action-background;
+    border: $mt-action-border;
+    color: $mt-action-color;
+    cursor: pointer;
+    font-size: $mt-action-font-size;
+    font-weight: $mt-action-font-weight;
+    height: rem($mt-toolbar-height - $mt-gutter);
+    line-height: rem($mt-toolbar-height - $mt-gutter);
+    letter-spacing: $mt-action-letter-spacing;
+    margin: rem($mt-gutter/2) 0;
+    padding: 0 rem($mt-gutter/2);
+    text-transform: $mt-action-text-transform;
+
+    &--preview {
+      margin-right: rem($mt-gutter/2);
+    }
+
+    &:hover,
+    &:focus {
+      color: $mt-action-color-hover;
+      outline: none;
+    }
+
+    &.is-active {
+      color: $mt-action-color-active;
+      font-weight: $mt-action-font-weight-active;
+    }
+
+    &:first-child {
+      margin-left: rem($mt-gutter/2);
+    }
+  }
+
+  &-icon {
+    fill: currentColor;
+    vertical-align: rem(-3);
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
