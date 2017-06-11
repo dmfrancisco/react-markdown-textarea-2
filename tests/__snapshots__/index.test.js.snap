@@ -86,43 +86,49 @@ Array [
             className="MarkdownTextarea-delimiter"
         />
         <button
-            className="MarkdownTextarea-action"
+            aria-label="Add bold text"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             B
         </button>
         <button
-            className="MarkdownTextarea-action"
+            aria-label="Add italic text"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             I
         </button>
         <button
-            className="MarkdownTextarea-action"
+            aria-label="Insert a quote"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             QUOTE
         </button>
         <button
-            className="MarkdownTextarea-action"
+            aria-label="Add a link"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             URL
         </button>
         <button
-            className="MarkdownTextarea-action"
+            aria-label="Add a bulleted list"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             UL
         </button>
         <button
-            className="MarkdownTextarea-action"
+            aria-label="Add a numbered list"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             OL
         </button>
         <button
-            className="MarkdownTextarea-action"
+            className="MarkdownTextarea-action "
             onClick={[Function]}
         >
             &lt;/&gt;

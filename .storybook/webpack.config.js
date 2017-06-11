@@ -5,8 +5,17 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"],
-        include: path.resolve(__dirname, '../')
+        include: path.resolve(__dirname, '../'),
+        use: [
+          { loader: 'style-loader'},
+          { loader: 'css-loader'},
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [ path.resolve(__dirname, '../node_modules/') ]
+            }
+          }
+        ]
       }
     ]
   }

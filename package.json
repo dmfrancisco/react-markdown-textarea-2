@@ -54,6 +54,7 @@
     "node-sass": "^4.5.3",
     "nwb": "0.16.x",
     "nwb-sass": "^0.8.0",
+    "primer-tooltips": "^0.5.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",

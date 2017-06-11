@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+
 import MarkdownIt from 'markdown-it';
+import 'primer-tooltips/index.scss';
 
 import MarkdownTextarea, { actions, help, renderIcon, insert } from '../src/with_octicons';
 import '../src/index.scss';
@@ -22,6 +24,7 @@ const customActions = actions.concat([
     type: 'delimiter',
   }, {
     content: renderIcon('code'),
+    props: { 'aria-label': 'Insert code' },
     execute(state, selection) {
       return insert(state, selection, {
         prefix: '`',
@@ -32,6 +35,7 @@ const customActions = actions.concat([
     },
   }, {
     content: renderIcon('file-media'),
+    props: { 'aria-label': 'Insert a picture' },
     execute(state, selection) {
       return insert(state, selection, {
         key: 'image',

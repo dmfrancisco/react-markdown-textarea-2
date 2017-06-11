@@ -11,6 +11,7 @@ export default class extends Component {
     actions: PropTypes.arrayOf(PropTypes.shape({
       type: PropTypes.string,
       content: PropTypes.node,
+      props: PropTypes.object,
       execute: PropTypes.func,
     })),
     help: PropTypes.shape({
@@ -20,6 +21,7 @@ export default class extends Component {
     toolbarAlwaysVisible: PropTypes.bool,
     labelWrite: PropTypes.node,
     labelPreview: PropTypes.node,
+    tooltipClassName: PropTypes.string,
   }
 
   static defaultProps = {
@@ -29,6 +31,7 @@ export default class extends Component {
     toolbarAlwaysVisible: false,
     labelWrite: 'Write',
     labelPreview: 'Preview',
+    tooltipClassName: '',
   }
 
   constructor(props) {
@@ -93,7 +96,10 @@ export default class extends Component {
         return <div key={`delimiter-${index}`} className="MarkdownTextarea-delimiter" />;
       }
       return (
-        <button key={`action-${index}`} className="MarkdownTextarea-action" onClick={this.handleClickAction.bind(this, action)}>
+        <button key={`action-${index}`}
+          {...action.props}
+          className={`MarkdownTextarea-action ${this.props.tooltipClassName}`}
+          onClick={this.handleClickAction.bind(this, action)}>
           { action.content }
         </button>
       );
@@ -124,7 +130,7 @@ export default class extends Component {
   // that if the user resizes it, it will keep the same height after the preview is toggled
   render() {
     const minHeight = this.textarea ? this.textarea.offsetHeight : null;
-    const { render, actions, help, toolbarAlwaysVisible, labelWrite, labelPreview, ...textareaProps } = this.props;
+    const { render, actions, help, toolbarAlwaysVisible, labelWrite, labelPreview, tooltipClassName, ...textareaProps } = this.props;
 
     return (
       <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
@@ -178,31 +184,37 @@ const actions = [
   },
   {
     content: 'B',
+    props: { 'aria-label': 'Add bold text' },
     execute(state, selection) {
       return insert(state, selection, { key: 'bold', prefix: '**', suffix: '**' });
     },
   }, {
     content: 'I',
+    props: { 'aria-label': 'Add italic text' },
     execute(state, selection) {
       return insert(state, selection, { key: 'italic', prefix: '_', suffix: '_' });
     },
   }, {
     content: 'QUOTE',
+    props: { 'aria-label': 'Insert a quote' },
     execute(state, selection) {
       return insert(state, selection, { prefix: '> ', multiline: true });
     },
   }, {
     content: 'URL',
+    props: { 'aria-label': 'Add a link' },
     execute(state, selection) {
       return insert(state, selection, { key: 'url', prefix: '[', suffix: '](url)' });
     },
   }, {
     content: 'UL',
+    props: { 'aria-label': 'Add a bulleted list' },
     execute(state, selection) {
       return insert(state, selection, { prefix: '- ', multiline: true });
     },
   }, {
     content: 'OL',
+    props: { 'aria-label': 'Add a numbered list' },
     execute(state, selection) {
       return insert(state, selection, { prefix: '1. ', multiline: true });
     },

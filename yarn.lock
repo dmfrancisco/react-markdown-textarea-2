@@ -6022,6 +6022,16 @@ pretty-format@^20.0.3:
     ansi-regex "^2.1.1"
     ansi-styles "^3.0.0"
 
+primer-support@*:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/primer-support/-/primer-support-4.0.0.tgz#3dbbb37e4e0f2ed2ea6035e0b79dd0cb33bae85e"
+
+primer-tooltips@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/primer-tooltips/-/primer-tooltips-0.5.4.tgz#73d3a5fc7084923f648eebfe1156aa7a0570111b"
+  dependencies:
+    primer-support "*"
+
 private@^0.1.6, private@~0.1.5:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.7.tgz#68ce5e8a1ef0a23bb570cc28537b5332aba63ef1"

@@ -31,6 +31,7 @@ $mt-help-text-decoration: none !default;
   box-sizing: border-box;
   background: $mt-background;
   border: $mt-border;
+  overflow: hidden;
 
   &-toolbar {
     background: $mt-toolbar-background;
@@ -38,7 +39,6 @@ $mt-help-text-decoration: none !default;
     border-color: $mt-toolbar-border-color;
     color: $mt-toolbar-color;
     height: rem($mt-toolbar-height);
-    overflow: hidden;
     position: absolute;
     right: 0;
     left: 0;
@@ -83,6 +83,11 @@ $mt-help-text-decoration: none !default;
     margin: rem($mt-gutter/2) 0;
     padding: 0 rem($mt-gutter/2);
     text-transform: $mt-action-text-transform;
+
+    // We don't want to add `overflow:hidden` to the toolbar because we may have tooltips, but
+    // we don't want the floating help buttton to show below or above the actions. This margin
+    // makes it wrap outside the textarea, and we add `overflow:hidden` to the textarea.
+    margin-bottom: 9999px;
 
     &:hover,
     &:focus {
