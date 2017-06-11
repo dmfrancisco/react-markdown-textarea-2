@@ -17,17 +17,30 @@ stories.add('default', () => (
   />
 ));
 
-const customActions = actions.concat([{
-  content: renderIcon('code'),
-  execute(state, selection) {
-    return insert(state, selection, {
-      prefix: '`',
-      suffix: '`',
-      blockPrefix: '```',
-      blockSuffix: '```',
-    });
+const customActions = actions.concat([
+  {
+    type: 'delimiter',
+  }, {
+    content: renderIcon('code'),
+    execute(state, selection) {
+      return insert(state, selection, {
+        prefix: '`',
+        suffix: '`',
+        blockPrefix: '```',
+        blockSuffix: '```',
+      });
+    },
+  }, {
+    content: renderIcon('file-media'),
+    execute(state, selection) {
+      return insert(state, selection, {
+        key: 'image',
+        prefix: '![',
+        suffix: '](src)',
+      });
+    },
   },
-}]);
+]);
 
 stories.add('custom actions', () => (
   <MarkdownTextarea
