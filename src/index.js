@@ -18,6 +18,8 @@ export default class extends Component {
       link: PropTypes.string.isRequired,
     }),
     toolbarAlwaysVisible: PropTypes.bool,
+    labelWrite: PropTypes.node,
+    labelPreview: PropTypes.node,
   }
 
   static defaultProps = {
@@ -25,6 +27,8 @@ export default class extends Component {
     actions: [],
     help: null,
     toolbarAlwaysVisible: false,
+    labelWrite: 'Write',
+    labelPreview: 'Preview',
   }
 
   constructor(props) {
@@ -99,11 +103,11 @@ export default class extends Component {
       <div className="MarkdownTextarea-toolbar">
         <button onClick={this.enableWrite}
           className={`MarkdownTextarea-action ${this.state.writing ? 'is-active' : ''}`}>
-          Write
+          { this.props.labelWrite }
         </button>
         <button onClick={this.enablePreview}
           className={`MarkdownTextarea-action ${this.state.writing ? '' : 'is-active'}`}>
-          Preview
+          { this.props.labelPreview }
         </button>
 
         { actions }
@@ -120,7 +124,7 @@ export default class extends Component {
   // that if the user resizes it, it will keep the same height after the preview is toggled
   render() {
     const minHeight = this.textarea ? this.textarea.offsetHeight : null;
-    const { render, actions, help, toolbarAlwaysVisible, ...textareaProps } = this.props;
+    const { render, actions, help, toolbarAlwaysVisible, labelWrite, labelPreview, ...textareaProps } = this.props;
 
     return (
       <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
