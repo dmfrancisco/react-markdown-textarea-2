@@ -40,7 +40,10 @@ export default class extends Component {
     this.state = {
       writing: true,
       focused: false,
-      value: this.props.value,
+
+      // Prevent issue when using values submitted from Windows. For eg, selecting "World"
+      // in "Hello\r\nWorld" and applying bold would result in "Hell**o\r\nWorl**d"
+      value: (this.props.value || '').replace(/\r\n/g, '\n'),
     };
   }
 
