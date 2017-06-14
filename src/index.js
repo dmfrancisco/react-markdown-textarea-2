@@ -68,7 +68,7 @@ export default class extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.target.value, lastKey: null });
   }
 
   handleFocus = () => {
@@ -87,9 +87,17 @@ export default class extends Component {
       end: this.textarea.selectionEnd,
     });
 
+    this.textarea.focus();
+    this.textarea.setSelectionRange(0, this.textarea.value.length);
+
+    // Firefox allows us to use `setState` normally without breaking history
+    // In Chrome and others it's better to use this in order for undo/redo to behave correctly
+    if (!/firefox/i.test(navigator.userAgent)) {
+      document.execCommand('insertText', false, newState.value);
+    }
+
     this.setState(newState, () => {
       this.textarea.setSelectionRange(newSelection.start, newSelection.end);
-      this.textarea.focus();
     });
   }
 
