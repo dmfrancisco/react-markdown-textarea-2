@@ -28,7 +28,7 @@ export default class extends Component {
     value: '',
     actions: [],
     help: null,
-    toolbarAlwaysVisible: false,
+    toolbarAlwaysVisible: true,
     labelWrite: 'Write',
     labelPreview: 'Preview',
     tooltipClassName: '',
@@ -141,11 +141,12 @@ export default class extends Component {
   // that if the user resizes it, it will keep the same height after the preview is toggled
   render() {
     const minHeight = this.textarea ? this.textarea.offsetHeight : null;
+    const showToolbar = this.props.toolbarAlwaysVisible || this.state.focused;
     const { render, actions, help, toolbarAlwaysVisible, labelWrite, labelPreview, tooltipClassName, ...textareaProps } = this.props;
 
     return (
-      <div className={`MarkdownTextarea ${this.state.focused ? 'is-focused' : ''}`} ref={(node) => { this.node = node; }}>
-        { (this.props.toolbarAlwaysVisible || this.state.focused) && this.renderToolbar() }
+      <div className={`MarkdownTextarea ${showToolbar ? 'MarkdownTextarea--withToolbar' : ''}`} ref={(node) => { this.node = node; }}>
+        { showToolbar && this.renderToolbar() }
 
         <Textarea {...textareaProps}
           inputRef={(textarea) => { this.textarea = textarea; }}
