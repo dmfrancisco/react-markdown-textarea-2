@@ -18,12 +18,12 @@
         functions: ignore
         imports: ignore
         objects: always-multiline
+    no-shadow: 0
     import/no-extraneous-dependencies: 0
     react/prefer-stateless-function: 0
     react/jsx-filename-extension: 0
     react/jsx-first-prop-new-line: 0
     react/jsx-max-props-per-line: 0
-    react/jsx-closing-bracket-location: 0
     react/no-danger: 0
     react/jsx-no-bind: 0
     react/no-array-index-key: 0

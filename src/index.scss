@@ -3,6 +3,7 @@
 
 // To override a variable simply define it before importing this file.
 // If you don't use SCSS, `inherit` is sometimes used for easier customization
+$mt-module-classname: "MarkdownTextarea" !default;
 $mt-background: #fff !default;
 $mt-gutter: 10 !default;
 $mt-border: 1px solid #000 !default;
@@ -26,7 +27,7 @@ $mt-help-font-size: rem(13) !default;
 $mt-help-text-decoration: none !default;
 
 // This follows the SUIT CSS naming conventions: https://git.io/NreGHA
-.MarkdownTextarea {
+.#{$mt-module-classname} {
   position: relative;
   box-sizing: border-box;
   background: $mt-background;
@@ -65,7 +66,7 @@ $mt-help-text-decoration: none !default;
   }
 
   &-preview,
-  &.is-focused &-write {
+  &.is-active &-write {
     padding-bottom: rem($mt-gutter);
     padding-top: rem($mt-toolbar-height + $mt-gutter);
   }

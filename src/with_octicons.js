@@ -2,7 +2,7 @@
 import React from 'react';
 import octicons from 'octicons';
 
-import MarkdownTextarea, { actions, insert } from '../src';
+import MarkdownTextarea, { actions, insert, classNames } from '../src';
 
 const renderIcon = (name, options = { class: 'MarkdownTextarea-icon' }) => (
   <span dangerouslySetInnerHTML={{ __html: octicons[name].toSVG(options) }} />
@@ -34,4 +34,5 @@ export {
   renderIcon,
   actionsWithOcticons as actions,
   helpWithOcticons as help,
+  classNames,
 };
