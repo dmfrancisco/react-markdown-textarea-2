@@ -181,6 +181,10 @@ export default class extends Component {
   }
 
   handleClickAction(action) {
+    if (!this.state.writing) {
+      return;
+    }
+
     const { newState, newSelection } = action.execute(this.state, {
       start: this.textarea.selectionStart,
       end: this.textarea.selectionEnd,
