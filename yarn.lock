@@ -56,15 +56,15 @@
     fuse.js "^3.0.1"
     prop-types "^15.5.9"
 
-"@storybook/react@^3.1.2":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-3.1.2.tgz#44222ceffa9b56e9042a13f6a41d7623004054cc"
+"@storybook/react@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-3.1.3.tgz#e2d7d2ecf4d7ff3dfab1d7b324e2c19e04be5934"
   dependencies:
     "@storybook/addon-actions" "^3.1.2"
     "@storybook/addon-links" "^3.1.2"
     "@storybook/addons" "^3.1.2"
     "@storybook/channel-postmessage" "^3.1.2"
-    "@storybook/ui" "^3.1.2"
+    "@storybook/ui" "^3.1.3"
     airbnb-js-shims "^1.1.1"
     autoprefixer "^7.1.1"
     babel-core "^6.24.1"
@@ -107,9 +107,9 @@
     webpack-dev-middleware "^1.10.2"
     webpack-hot-middleware "^2.18.0"
 
-"@storybook/ui@^3.1.2":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-3.1.2.tgz#2b9c79c526e07e6915f9ba6c0396c1caea3b0409"
+"@storybook/ui@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-3.1.3.tgz#806c6bc4474b1437edf305c50b88662869ad5c31"
   dependencies:
     "@storybook/react-fuzzy" "^0.4.0"
     babel-runtime "^6.23.0"
@@ -3292,6 +3292,10 @@ git-url-parse@^6.0.2:
   dependencies:
     git-up "^2.0.0"
 
+github-markdown-css@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-2.8.0.tgz#9c03f646f550b7e3fd9ee0ae29ee03ea2fe683a3"
+
 glob-base@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/glob-base/-/glob-base-0.3.0.tgz#dbb164f6221b1c0b1ccf82aea328b497df0ea3c4"
@@ -5230,6 +5234,10 @@ normalize-url@^1.4.0:
     prepend-http "^1.0.0"
     query-string "^4.1.0"
     sort-keys "^1.0.0"
+
+normalize.css@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
 
 npm-install-webpack2-plugin@4.1.0:
   version "4.1.0"

@@ -59,3 +59,21 @@ it('supports custom actions', () => {
   );
   expect(element.getNodes()).toMatchSnapshot();
 });
+
+it('accepts regular textarea attributes', () => {
+  const element = shallow(
+    <MarkdownTextarea
+      id="example"
+      name="example"
+      render={value => value}
+      placeholder="Example placeholder"
+      value="Hello, World"
+      disabled
+      readOnly
+      required
+      maxLength={7}
+      autoFocus
+    />
+  );
+  expect(element.getNodes()).toMatchSnapshot();
+});

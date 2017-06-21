@@ -1,0 +1,38 @@
+$mt-module-classname: "CustomMarkdownTextarea";
+$mt-toolbar-height: 42;
+$mt-gutter: 15;
+
+@import '../src/index.scss';
+
+.CustomMarkdownTextarea {
+  &-toolbar {
+    top: -1px;
+  }
+
+  &-action {
+    background: #fdfdfd;
+    border: 1px solid #999;
+    border-right-width: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+
+    &, &:hover {
+      color: #000;
+    }
+
+    &.is-active {
+      background: #d8d8d8;
+    }
+  }
+
+  &-action + &-action {
+    border-radius: 0;
+  }
+
+  &-action:last-of-type,
+  &-action:nth-child(2) {
+    border-right-width: 1px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}
