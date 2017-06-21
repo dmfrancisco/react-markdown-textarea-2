@@ -27,11 +27,13 @@
     "deploy": "storybook-to-ghpages",
     "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "prop-types": "^15.5.7",
+    "react-textarea-autosize": "^5.0.6"
+  },
   "peerDependencies": {
     "octicons": "^5.0.1",
-    "react": "15.x",
-    "react-textarea-autosize": "^5.0.6"
+    "react": "^15.3.0"
   },
   "devDependencies": {
     "@kadira/storybook-deployer": "^1.2.0",
@@ -56,6 +58,7 @@
     "normalize.css": "^7.0.0",
     "nwb": "0.16.x",
     "nwb-sass": "^0.8.0",
+    "octicons": "^5.0.1",
     "primer-tooltips": "^0.5.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
