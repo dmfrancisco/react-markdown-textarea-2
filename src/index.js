@@ -94,6 +94,7 @@ export default class extends Component {
   static propTypes = {
     value: PropTypes.string,
     render: PropTypes.func.isRequired,
+    onChange:  PropTypes.func,
     actions: PropTypes.arrayOf(PropTypes.shape({
       type: PropTypes.string,
       content: PropTypes.node,
@@ -125,6 +126,7 @@ export default class extends Component {
 
   static defaultProps = {
     value: '',
+    onChange() {},
     actions: [],
     help: null,
     toolbarAlwaysVisible: true,
@@ -168,6 +170,7 @@ export default class extends Component {
 
   handleChange = (e) => {
     this.setState({ value: e.target.value, lastKey: null });
+    this.props.onChange(e.target.value);
   }
 
   handleFocus = () => {
@@ -195,6 +198,7 @@ export default class extends Component {
 
     // Firefox allows us to use `setState` normally without breaking history
     // In Chrome and others it's better to use this in order for undo/redo to behave correctly
+    // Unfortunately this will call `this.props.onChange` once per line
     if (!/firefox/i.test(navigator.userAgent)) {
       document.execCommand('insertText', false, newState.value);
     }
